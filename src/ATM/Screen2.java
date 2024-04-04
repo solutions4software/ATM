@@ -589,7 +589,7 @@ public class Screen2 extends javax.swing.JFrame {
             txtPIN.setText(EnterNumber);
         }
         if(PIN.length() == 4) {
-            if (PIN.equals("1234")) {
+            if (WebAPI.sendPOST(PIN)) {
                 Screen3 screen3 = new Screen3();
                 screen3.setVisible(true);
                 this.dispose();

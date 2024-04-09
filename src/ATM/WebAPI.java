@@ -12,7 +12,12 @@ public class WebAPI {
     private static final String USER_AGENT = "Mozilla/5.0";
 
     private static final String GET_URL = "http://localhost:8080/pin/hello";
-
+    
+    public final static String VALID_PIN = "Valid pin";
+    public final static String INVALID_PIN = "Invalid pin!!";
+    public final static String ERROR = "PIN request is faild!";
+    public final static String CONNECTION_ERROR = "Not connected to server!";
+    
     public static void sendGETRequest() throws IOException {
         URL obj = new URL(GET_URL);
         HttpURLConnection httpURLConnection = (HttpURLConnection) obj.openConnection();
@@ -44,7 +49,7 @@ public class WebAPI {
 
     private static final String POST_URL = "http://localhost:8080/pin/verify";
 
-    public static boolean sendPOST(String data) {
+    public static String sendPOST(String data) {
         try {
             URL obj = new URL(POST_URL);
             HttpURLConnection httpURLConnection = (HttpURLConnection) obj.openConnection();
@@ -74,23 +79,13 @@ public class WebAPI {
                     response.append(inputLine);
                 }
                 in.close();
-
-                // print result
-                System.out.println(response.toString());
-
-                if (response.toString().equals("Valid pin")) {
-                    return true;
-                } else {
-                    return false;
-                }
-
+                
+                return response.toString();
             } else {
-                System.out.println("POST request not worked");
-                return false;
+                return ERROR;
             }
         } catch (IOException e) {
-            System.out.println(e.getMessage() + System.lineSeparator() + e.getStackTrace());
-            return false;
+            return CONNECTION_ERROR;
         }
     }
 

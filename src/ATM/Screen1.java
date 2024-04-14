@@ -1,5 +1,7 @@
 package ATM;
 
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -7,14 +9,25 @@ import javax.swing.JLabel;
 
 public class Screen1 extends javax.swing.JFrame {
     
-    private final static String BANK = "XYZ";
+    private final static String BANK = "CAPITAL";
+    
+    private double availableAmount;
     
     public Screen1() {
         initComponents();
-        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         lblWelcome.setText("Welcome to " + BANK + " Bank");
+        //fullScreen();
     }
 
+    private void fullScreen() {
+        // Set the frame to fullscreen
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        gd.setFullScreenWindow(this);
+        
+        this.setSize(gd.getDisplayMode().getWidth(), gd.getDisplayMode().getHeight());
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,6 +47,7 @@ public class Screen1 extends javax.swing.JFrame {
         lblGetStarted = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(15, 15, 15));
 

@@ -5,18 +5,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class Screen2 extends javax.swing.JFrame {
+public class Screen6 extends javax.swing.JFrame {
     
     private double availableAmount;
     
-    private String PIN = "";
+    private String Amount = "";
     
-    private final static String PIN_TEXT = "Enter your PIN";
+    private final static String Amount_TEXT = "Enter withdrawal amount";
+    private final static String Error = "You can only withdraw AED 3000 at once.";
     
-    public Screen2() {
+    public Screen6(double amount) {
+        availableAmount = amount;
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        //fullScreen();
     }
 
     /**
@@ -35,7 +36,7 @@ public class Screen2 extends javax.swing.JFrame {
         lblCancel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        txtPIN = new javax.swing.JTextField();
+        lblAmount = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         lbl1 = new javax.swing.JLabel();
         lbl2 = new javax.swing.JLabel();
@@ -49,9 +50,7 @@ public class Screen2 extends javax.swing.JFrame {
         lbl00 = new javax.swing.JLabel();
         lbl0 = new javax.swing.JLabel();
         lblClear = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        btnGo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -119,13 +118,13 @@ public class Screen2 extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(22, 22, 22));
 
-        txtPIN.setFont(new java.awt.Font("Calibri Light", 0, 28)); // NOI18N
-        txtPIN.setForeground(new java.awt.Color(255, 255, 255));
-        txtPIN.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtPIN.setText("Enter your PIN");
-        txtPIN.setBorder(null);
-        txtPIN.setEnabled(false);
-        txtPIN.setOpaque(false);
+        lblAmount.setFont(new java.awt.Font("Calibri Light", 0, 28)); // NOI18N
+        lblAmount.setForeground(new java.awt.Color(255, 255, 255));
+        lblAmount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        lblAmount.setText("Enter withdrawal amount");
+        lblAmount.setBorder(null);
+        lblAmount.setEnabled(false);
+        lblAmount.setOpaque(false);
 
         jPanel4.setOpaque(false);
 
@@ -297,6 +296,14 @@ public class Screen2 extends javax.swing.JFrame {
             }
         });
 
+        btnGo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ATM/go.png"))); // NOI18N
+        btnGo.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/ATM/go-hover.png"))); // NOI18N
+        btnGo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -304,12 +311,6 @@ public class Screen2 extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(lbl00, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lbl0, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblClear, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(lbl7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -327,7 +328,16 @@ public class Screen2 extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(lbl2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(lbl13, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lbl13, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(lbl00, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnGo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(lbl0, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblClear, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -353,7 +363,9 @@ public class Screen2 extends javax.swing.JFrame {
                     .addComponent(lbl00, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl0, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblClear, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(btnGo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -363,7 +375,7 @@ public class Screen2 extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtPIN, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblAmount)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -373,49 +385,22 @@ public class Screen2 extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtPIN, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(76, 76, 76)
+                .addComponent(lblAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
-
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ATM/fingerprint.png"))); // NOI18N
-
-        jLabel5.setFont(new java.awt.Font("Calibri", 0, 28)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("to capture your fingerprint");
-
-        jLabel6.setFont(new java.awt.Font("Calibri", 0, 36)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Use Fingerprint Scanner");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(152, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel5)
-                .addContainerGap(231, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -460,53 +445,53 @@ public class Screen2 extends javax.swing.JFrame {
     }//GEN-LAST:event_lbl1MouseExited
 
     private void lbl1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl1MouseClicked
-        setPIN("1");
+        setAmount("1");
     }//GEN-LAST:event_lbl1MouseClicked
 
     private void lbl3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl3MouseClicked
-        setPIN("3");
+        setAmount("3");
     }//GEN-LAST:event_lbl3MouseClicked
 
     private void lbl2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl2MouseClicked
-        setPIN("2");
+        setAmount("2");
     }//GEN-LAST:event_lbl2MouseClicked
 
     private void lbl4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl4MouseClicked
-        setPIN("4");
+        setAmount("4");
     }//GEN-LAST:event_lbl4MouseClicked
 
     private void lbl5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl5MouseClicked
-        setPIN("5");
+        setAmount("5");
     }//GEN-LAST:event_lbl5MouseClicked
 
     private void lbl6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl6MouseClicked
-        setPIN("6");
+        setAmount("6");
     }//GEN-LAST:event_lbl6MouseClicked
 
     private void lbl7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl7MouseClicked
-        setPIN("7");
+        setAmount("7");
     }//GEN-LAST:event_lbl7MouseClicked
 
     private void lbl8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl8MouseClicked
-        setPIN("8");
+        setAmount("8");
     }//GEN-LAST:event_lbl8MouseClicked
 
     private void lbl9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl9MouseClicked
-        setPIN("9");
+        setAmount("9");
     }//GEN-LAST:event_lbl9MouseClicked
 
     private void lbl00MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl00MouseClicked
-        setPIN("00");
+        setAmount("00");
     }//GEN-LAST:event_lbl00MouseClicked
 
     private void lbl0MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl0MouseClicked
-        setPIN("0");
+        setAmount("0");
     }//GEN-LAST:event_lbl0MouseClicked
 
     private void lblClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblClearMouseClicked
-        setPIN("");
-        txtPIN.setText(PIN_TEXT);
-        PIN = "";
+        setAmount("");
+        lblAmount.setText(Amount_TEXT);
+        Amount = "";
     }//GEN-LAST:event_lblClearMouseClicked
 
     private void lbl2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl2MouseEntered
@@ -596,46 +581,36 @@ public class Screen2 extends javax.swing.JFrame {
     private void lblClearMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblClearMouseExited
         scaleLabelIcon(lblClear, "/ATM/clear.png");
     }//GEN-LAST:event_lblClearMouseExited
-    
-    private void setPIN(String val) {
-        if (txtPIN.getText().equals(PIN_TEXT) || txtPIN.getText().equals(WebAPI.INVALID_PIN) ||
-            txtPIN.getText().equals(WebAPI.CONNECTION_ERROR) || txtPIN.getText().equals(WebAPI.ERROR)) 
-        {
-            txtPIN.setText("");
-            PIN = "";
-        }
-        if(txtPIN.getText().length() <= 3) {
-            String EnterNumber;
-            if (val.length() == 2) {
-                if(txtPIN.getText().length() != 3) {
-                    EnterNumber = txtPIN.getText() + "XX";
-                    PIN += val;
-                }
-                else
-                    EnterNumber = txtPIN.getText();
+
+    private void btnGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoActionPerformed
+        try {
+            double dAmount = Double.parseDouble(Amount);
+            if(dAmount > 3000.0) {
+                lblAmount.setText(Error);
             }
             else {
-                EnterNumber = txtPIN.getText() + "X";
-                PIN += val;
+                availableAmount -= dAmount;
+                collectYourCash();
             }
-            txtPIN.setText(EnterNumber);
+        } catch (Exception e) {
+            lblAmount.setText(Error);
         }
-        if(PIN.length() == 4) {
-            String result = WebAPI.sendPOST(PIN);
-            switch(result) {
-                case WebAPI.VALID_PIN:
-                    Screen3 screen3 = new Screen3();
-                    screen3.setVisible(true);
-                    this.dispose();
-                    break;
-                case WebAPI.INVALID_PIN:
-                    txtPIN.setText(WebAPI.INVALID_PIN);
-                    break;
-                default:
-                    txtPIN.setText(result);
-                    break;
-            }
+    }//GEN-LAST:event_btnGoActionPerformed
+    
+    private void collectYourCash() {
+        Screen4 screen4 = new Screen4(availableAmount);
+        screen4.setVisible(true);
+        this.dispose();
+    }
+    
+    private void setAmount(String val) {
+        if (lblAmount.getText().equals(Amount_TEXT) || lblAmount.getText().equals(Error))
+        {
+            lblAmount.setText("");
+            Amount = "";
         }
+        Amount += val;
+        lblAmount.setText(Amount);
     }
     
     private void scaleLabelIcon(JLabel lbl, String imagePath) {
@@ -648,12 +623,10 @@ public class Screen2 extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -669,8 +642,8 @@ public class Screen2 extends javax.swing.JFrame {
     private javax.swing.JLabel lbl7;
     private javax.swing.JLabel lbl8;
     private javax.swing.JLabel lbl9;
+    private javax.swing.JTextField lblAmount;
     private javax.swing.JLabel lblCancel;
     private javax.swing.JLabel lblClear;
-    private javax.swing.JTextField txtPIN;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,18 +1,24 @@
 package ATM;
 
 import java.awt.Image;
+import java.text.DecimalFormat;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class Screen4 extends javax.swing.JFrame {
     
-    public Screen4() {
+    private double availableAmount;
+    
+    DecimalFormat df = new DecimalFormat("AED #,###,###,##0.00");
+    
+    public Screen4(double amount) {
         initComponents();
-        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         lblWelcome.setText("Thank you and Collect Your Cash !");
+        lblAvailableAmount.setText("Total available balance is " + df.format(amount));
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,8 +35,10 @@ public class Screen4 extends javax.swing.JFrame {
         lblCancel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         lblWelcome = new javax.swing.JLabel();
+        lblAvailableAmount = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(15, 15, 15));
 
@@ -100,21 +108,31 @@ public class Screen4 extends javax.swing.JFrame {
         lblWelcome.setText("Thank you and Collect Your Cash !");
         lblWelcome.setToolTipText("");
 
+        lblAvailableAmount.setFont(new java.awt.Font("Calibri Light", 0, 48)); // NOI18N
+        lblAvailableAmount.setForeground(new java.awt.Color(255, 255, 255));
+        lblAvailableAmount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAvailableAmount.setText("Thank you and Collect Your Cash !");
+        lblAvailableAmount.setToolTipText("");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblWelcome, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblWelcome, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+                    .addComponent(lblAvailableAmount, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(215, 215, 215)
+                .addGap(142, 142, 142)
                 .addComponent(lblWelcome)
-                .addContainerGap(275, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(lblAvailableAmount)
+                .addContainerGap(270, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -145,7 +163,9 @@ public class Screen4 extends javax.swing.JFrame {
     }//GEN-LAST:event_lblCancelMouseExited
 
     private void lblCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCancelMouseClicked
-        System.exit(0);
+        Screen1 screen1 = new Screen1();
+        screen1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_lblCancelMouseClicked
     
     private void scaleLabelIcon(JLabel lbl, String imagePath) {
@@ -163,6 +183,7 @@ public class Screen4 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblAvailableAmount;
     private javax.swing.JLabel lblCancel;
     private javax.swing.JLabel lblWelcome;
     // End of variables declaration//GEN-END:variables

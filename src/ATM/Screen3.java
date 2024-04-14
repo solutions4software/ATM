@@ -1,6 +1,7 @@
 package ATM;
 
 import java.awt.Image;
+import java.text.DecimalFormat;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -8,13 +9,23 @@ import javax.swing.JLabel;
 public class Screen3 extends javax.swing.JFrame {
     
     private final static String CUSTOMER_NAME = "Akash Gilbert";
+    private double availableAmount = 200000.00;
+    
+    DecimalFormat df = new DecimalFormat("AED #,###,###,##0.00");
     
     public Screen3() {
         initComponents();
-        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         lblCustomerName.setText(CUSTOMER_NAME);
+        //lblAvailableAmount.setText("AED " + String.format("%,.2f", availableAmount));
+        lblAvailableAmount.setText(df.format(availableAmount));
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
+    public void updateAmount(double amount) {
+        availableAmount = amount;
+        lblAvailableAmount.setText("AED " + String.format("%,.2f", availableAmount));
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,7 +44,7 @@ public class Screen3 extends javax.swing.JFrame {
         lblWelcome = new javax.swing.JLabel();
         lblWelcome1 = new javax.swing.JLabel();
         lblCustomerName = new javax.swing.JLabel();
-        lblWelcome2 = new javax.swing.JLabel();
+        lblAvailableAmount = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         lblCashWithdrawal = new javax.swing.JLabel();
         lblFundTransfer = new javax.swing.JLabel();
@@ -41,6 +52,7 @@ public class Screen3 extends javax.swing.JFrame {
         lblOtherServices = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(15, 15, 15));
 
@@ -123,11 +135,11 @@ public class Screen3 extends javax.swing.JFrame {
         lblCustomerName.setText("Akash Gilbert !");
         lblCustomerName.setToolTipText("");
 
-        lblWelcome2.setFont(new java.awt.Font("Calibri Light", 1, 24)); // NOI18N
-        lblWelcome2.setForeground(new java.awt.Color(255, 255, 255));
-        lblWelcome2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblWelcome2.setText("2,00,000.00");
-        lblWelcome2.setToolTipText("");
+        lblAvailableAmount.setFont(new java.awt.Font("Calibri Light", 1, 24)); // NOI18N
+        lblAvailableAmount.setForeground(new java.awt.Color(255, 255, 255));
+        lblAvailableAmount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblAvailableAmount.setText("AED 2,00,000.00");
+        lblAvailableAmount.setToolTipText("");
 
         jPanel3.setBackground(new java.awt.Color(22, 22, 22));
 
@@ -196,12 +208,12 @@ public class Screen3 extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblWelcome, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblWelcome2, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)))
+                        .addComponent(lblAvailableAmount, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,7 +227,7 @@ public class Screen3 extends javax.swing.JFrame {
                 .addGap(100, 100, 100)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblWelcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblWelcome2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblAvailableAmount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(94, Short.MAX_VALUE))
         );
 
@@ -247,7 +259,9 @@ public class Screen3 extends javax.swing.JFrame {
     }//GEN-LAST:event_lblCancelMouseExited
 
     private void lblCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCancelMouseClicked
-        System.exit(0);
+        Screen1 screen1 = new Screen1();
+        screen1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_lblCancelMouseClicked
 
     private void lblCashWithdrawalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCashWithdrawalMouseEntered
@@ -259,8 +273,8 @@ public class Screen3 extends javax.swing.JFrame {
     }//GEN-LAST:event_lblCashWithdrawalMouseExited
 
     private void lblCashWithdrawalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCashWithdrawalMouseClicked
-        Screen4 screen4 = new Screen4();
-        screen4.setVisible(true);
+        Screen5 screen5 = new Screen5(availableAmount);
+        screen5.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblCashWithdrawalMouseClicked
     
@@ -281,6 +295,7 @@ public class Screen3 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblAccountDetails;
+    private javax.swing.JLabel lblAvailableAmount;
     private javax.swing.JLabel lblCancel;
     private javax.swing.JLabel lblCashWithdrawal;
     private javax.swing.JLabel lblCustomerName;
@@ -288,6 +303,5 @@ public class Screen3 extends javax.swing.JFrame {
     private javax.swing.JLabel lblOtherServices;
     private javax.swing.JLabel lblWelcome;
     private javax.swing.JLabel lblWelcome1;
-    private javax.swing.JLabel lblWelcome2;
     // End of variables declaration//GEN-END:variables
 }

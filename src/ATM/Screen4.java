@@ -2,12 +2,14 @@ package ATM;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class Screen4 extends javax.swing.JFrame {
     
     public Screen4() {
         initComponents();
+        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         lblWelcome.setText("Thank you and Collect Your Cash !");
     }
 

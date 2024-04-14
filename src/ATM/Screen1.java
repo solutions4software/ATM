@@ -2,6 +2,7 @@ package ATM;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class Screen1 extends javax.swing.JFrame {
@@ -10,6 +11,7 @@ public class Screen1 extends javax.swing.JFrame {
     
     public Screen1() {
         initComponents();
+        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         lblWelcome.setText("Welcome to " + BANK + " Bank");
     }
 

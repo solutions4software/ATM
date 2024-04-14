@@ -2,6 +2,7 @@ package ATM;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class Screen3 extends javax.swing.JFrame {
@@ -10,6 +11,8 @@ public class Screen3 extends javax.swing.JFrame {
     
     public Screen3() {
         initComponents();
+        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        lblCustomerName.setText(CUSTOMER_NAME);
     }
 
     /**

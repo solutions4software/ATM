@@ -8,15 +8,15 @@ import javax.swing.JLabel;
 
 public class Screen4 extends javax.swing.JFrame {
     
-    private double availableAmount;
-    
     DecimalFormat df = new DecimalFormat("AED #,###,###,##0.00");
     
-    public Screen4(double amount) {
+    public Screen4(double availableAmount, double wAmount) {
         initComponents();
-        lblWelcome.setText("Thank you and Collect Your Cash !");
-        lblAvailableAmount.setText("Total available balance is " + df.format(amount));
+        scaleLabelIcon(lblHome, "/ATM/home.png");
+        lblWelcome.setText("Thank you and collect your cash! You have successfully withdrawn " + df.format(wAmount) + ".");
+        lblAvailableAmount.setText("Total Available Balance is " + df.format(availableAmount));
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        FileHandling.writJSON(availableAmount);
     }
     
     /**
@@ -32,7 +32,7 @@ public class Screen4 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        lblCancel = new javax.swing.JLabel();
+        lblHome = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         lblWelcome = new javax.swing.JLabel();
         lblAvailableAmount = new javax.swing.JLabel();
@@ -54,18 +54,18 @@ public class Screen4 extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(197, 195, 197));
         jLabel3.setText("1800 0001 0001");
 
-        lblCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ATM/cancel.png"))); // NOI18N
-        lblCancel.setText("jLabel4");
-        lblCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblCancel.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ATM/cancel.png"))); // NOI18N
+        lblHome.setText("jLabel4");
+        lblHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblCancelMouseClicked(evt);
+                lblHomeMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblCancelMouseEntered(evt);
+                lblHomeMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblCancelMouseExited(evt);
+                lblHomeMouseExited(evt);
             }
         });
 
@@ -82,7 +82,7 @@ public class Screen4 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 561, Short.MAX_VALUE)
-                .addComponent(lblCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblHome, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
         jPanel1Layout.setVerticalGroup(
@@ -90,7 +90,7 @@ public class Screen4 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblHome, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
@@ -128,7 +128,7 @@ public class Screen4 extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(142, 142, 142)
+                .addContainerGap(142, Short.MAX_VALUE)
                 .addComponent(lblWelcome)
                 .addGap(18, 18, 18)
                 .addComponent(lblAvailableAmount)
@@ -154,19 +154,19 @@ public class Screen4 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lblCancelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCancelMouseEntered
-        scaleLabelIcon(lblCancel, "/ATM/cancel-hover.png");
-    }//GEN-LAST:event_lblCancelMouseEntered
+    private void lblHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseEntered
+        scaleLabelIcon(lblHome, "/ATM/home-hover.png");
+    }//GEN-LAST:event_lblHomeMouseEntered
 
-    private void lblCancelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCancelMouseExited
-        scaleLabelIcon(lblCancel, "/ATM/cancel.png");
-    }//GEN-LAST:event_lblCancelMouseExited
+    private void lblHomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseExited
+        scaleLabelIcon(lblHome, "/ATM/home.png");
+    }//GEN-LAST:event_lblHomeMouseExited
 
-    private void lblCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCancelMouseClicked
+    private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
         Screen1 screen1 = new Screen1();
         screen1.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_lblCancelMouseClicked
+    }//GEN-LAST:event_lblHomeMouseClicked
     
     private void scaleLabelIcon(JLabel lbl, String imagePath) {
         try {
@@ -184,7 +184,7 @@ public class Screen4 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblAvailableAmount;
-    private javax.swing.JLabel lblCancel;
+    private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblWelcome;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,16 +7,14 @@ import javax.swing.JLabel;
 
 public class Screen6 extends javax.swing.JFrame {
     
-    private double availableAmount;
-    
     private String Amount = "";
     
     private final static String Amount_TEXT = "Enter withdrawal amount";
     private final static String Error = "You can only withdraw AED 3000 at once.";
     
-    public Screen6(double amount) {
-        availableAmount = amount;
+    public Screen6() {
         initComponents();
+        scaleLabelIcon(lblHome, "/ATM/home.png");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
@@ -33,7 +31,7 @@ public class Screen6 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        lblCancel = new javax.swing.JLabel();
+        lblHome = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         lblAmount = new javax.swing.JTextField();
@@ -69,17 +67,17 @@ public class Screen6 extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(197, 195, 197));
         jLabel3.setText("1800 0001 0001");
 
-        lblCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ATM/cancel.png"))); // NOI18N
-        lblCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblCancel.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ATM/cancel.png"))); // NOI18N
+        lblHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblCancelMouseClicked(evt);
+                lblHomeMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblCancelMouseEntered(evt);
+                lblHomeMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblCancelMouseExited(evt);
+                lblHomeMouseExited(evt);
             }
         });
 
@@ -96,7 +94,7 @@ public class Screen6 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(561, 561, 561)
-                .addComponent(lblCancel)
+                .addComponent(lblHome)
                 .addGap(35, 35, 35))
         );
         jPanel1Layout.setVerticalGroup(
@@ -104,7 +102,7 @@ public class Screen6 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblHome, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
@@ -422,19 +420,19 @@ public class Screen6 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lblCancelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCancelMouseEntered
-        scaleLabelIcon(lblCancel, "/ATM/cancel-hover.png");
-    }//GEN-LAST:event_lblCancelMouseEntered
+    private void lblHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseEntered
+        scaleLabelIcon(lblHome, "/ATM/home-hover.png");
+    }//GEN-LAST:event_lblHomeMouseEntered
 
-    private void lblCancelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCancelMouseExited
-        scaleLabelIcon(lblCancel, "/ATM/cancel.png");
-    }//GEN-LAST:event_lblCancelMouseExited
+    private void lblHomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseExited
+        scaleLabelIcon(lblHome, "/ATM/home.png");
+    }//GEN-LAST:event_lblHomeMouseExited
 
-    private void lblCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCancelMouseClicked
+    private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
         Screen1 screen1 = new Screen1();
         screen1.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_lblCancelMouseClicked
+    }//GEN-LAST:event_lblHomeMouseClicked
 
     private void lbl1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl1MouseEntered
         scaleLabelIcon(lbl1, "/ATM/1-hover.png");
@@ -589,17 +587,16 @@ public class Screen6 extends javax.swing.JFrame {
                 lblAmount.setText(Error);
             }
             else {
-                availableAmount -= dAmount;
-                collectYourCash();
+                navigateToPIN(dAmount);
             }
         } catch (Exception e) {
             lblAmount.setText(Error);
         }
     }//GEN-LAST:event_btnGoActionPerformed
     
-    private void collectYourCash() {
-        Screen4 screen4 = new Screen4(availableAmount);
-        screen4.setVisible(true);
+    private void navigateToPIN(double wAmount) {
+        Screen2 screen2 = new Screen2(wAmount);
+        screen2.setVisible(true);
         this.dispose();
     }
     
@@ -643,7 +640,7 @@ public class Screen6 extends javax.swing.JFrame {
     private javax.swing.JLabel lbl8;
     private javax.swing.JLabel lbl9;
     private javax.swing.JTextField lblAmount;
-    private javax.swing.JLabel lblCancel;
     private javax.swing.JLabel lblClear;
+    private javax.swing.JLabel lblHome;
     // End of variables declaration//GEN-END:variables
 }

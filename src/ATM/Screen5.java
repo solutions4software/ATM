@@ -1,19 +1,16 @@
 package ATM;
 
 import java.awt.Image;
-import java.text.DecimalFormat;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class Screen5 extends javax.swing.JFrame {
     
-    private double availableAmount;
-    
-    public Screen5(double amount) {
+    public Screen5() {
         initComponents();
+        scaleLabelIcon(lblHome, "/ATM/home.png");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        availableAmount = amount;
     }
 
     /**
@@ -29,7 +26,7 @@ public class Screen5 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        lblCancel = new javax.swing.JLabel();
+        lblHome = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btn100 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -57,17 +54,17 @@ public class Screen5 extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(197, 195, 197));
         jLabel3.setText("1800 0001 0001");
 
-        lblCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ATM/cancel.png"))); // NOI18N
-        lblCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblCancel.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ATM/cancel.png"))); // NOI18N
+        lblHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblCancelMouseClicked(evt);
+                lblHomeMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblCancelMouseEntered(evt);
+                lblHomeMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblCancelMouseExited(evt);
+                lblHomeMouseExited(evt);
             }
         });
 
@@ -84,7 +81,7 @@ public class Screen5 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(561, 561, 561)
-                .addComponent(lblCancel)
+                .addComponent(lblHome)
                 .addGap(35, 35, 35))
         );
         jPanel1Layout.setVerticalGroup(
@@ -92,7 +89,7 @@ public class Screen5 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblHome, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
@@ -222,54 +219,49 @@ public class Screen5 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lblCancelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCancelMouseEntered
-        scaleLabelIcon(lblCancel, "/ATM/cancel-hover.png");
-    }//GEN-LAST:event_lblCancelMouseEntered
+    private void lblHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseEntered
+        scaleLabelIcon(lblHome, "/ATM/home-hover.png");
+    }//GEN-LAST:event_lblHomeMouseEntered
 
-    private void lblCancelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCancelMouseExited
-        scaleLabelIcon(lblCancel, "/ATM/cancel.png");
-    }//GEN-LAST:event_lblCancelMouseExited
+    private void lblHomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseExited
+        scaleLabelIcon(lblHome, "/ATM/home.png");
+    }//GEN-LAST:event_lblHomeMouseExited
 
-    private void lblCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCancelMouseClicked
+    private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
         Screen1 screen1 = new Screen1();
         screen1.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_lblCancelMouseClicked
+    }//GEN-LAST:event_lblHomeMouseClicked
 
     private void btn100ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn100ActionPerformed
-        availableAmount -= 100;
-        collectYourCash();
+        navigateToPIN(100);
     }//GEN-LAST:event_btn100ActionPerformed
 
     private void btn200ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn200ActionPerformed
-        availableAmount -= 200;
-        collectYourCash();
+        navigateToPIN(200);
     }//GEN-LAST:event_btn200ActionPerformed
 
     private void btn300ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn300ActionPerformed
-        availableAmount -= 300;
-        collectYourCash();
+        navigateToPIN(300);
     }//GEN-LAST:event_btn300ActionPerformed
 
     private void btn400ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn400ActionPerformed
-        availableAmount -= 400;
-        collectYourCash();
+        navigateToPIN(400);
     }//GEN-LAST:event_btn400ActionPerformed
 
     private void btn500ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn500ActionPerformed
-        availableAmount -= 500;
-        collectYourCash();
+        navigateToPIN(500);
     }//GEN-LAST:event_btn500ActionPerformed
 
     private void btnOtherAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOtherAmountActionPerformed
-        Screen6 screen6 = new Screen6(availableAmount);
+        Screen6 screen6 = new Screen6();
         screen6.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnOtherAmountActionPerformed
     
-    private void collectYourCash() {
-        Screen4 screen4 = new Screen4(availableAmount);
-        screen4.setVisible(true);
+    private void navigateToPIN(double wAmount) {
+        Screen2 screen2 = new Screen2(wAmount);
+        screen2.setVisible(true);
         this.dispose();
     }
     
@@ -295,6 +287,6 @@ public class Screen5 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel lblCancel;
+    private javax.swing.JLabel lblHome;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,7 +1,5 @@
 package ATM;
 
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -11,21 +9,10 @@ public class Screen1 extends javax.swing.JFrame {
     
     private final static String BANK = "CAPITAL";
     
-    private double availableAmount;
-    
     public Screen1() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         lblWelcome.setText("Welcome to " + BANK + " Bank");
-        //fullScreen();
-    }
-
-    private void fullScreen() {
-        // Set the frame to fullscreen
-        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        gd.setFullScreenWindow(this);
-        
-        this.setSize(gd.getDisplayMode().getWidth(), gd.getDisplayMode().getHeight());
     }
     
     /**
@@ -138,22 +125,21 @@ public class Screen1 extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblWelcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(lblGetStarted, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(lblWelcome, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblGetStarted, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(154, 154, 154)
+                .addContainerGap(154, Short.MAX_VALUE)
                 .addComponent(lblWelcome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(lblGetStarted)
-                .addContainerGap(280, Short.MAX_VALUE))
+                .addContainerGap(268, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -196,8 +182,8 @@ public class Screen1 extends javax.swing.JFrame {
     }//GEN-LAST:event_lblCancelMouseClicked
 
     private void lblGetStartedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGetStartedMouseClicked
-        Screen2 screen2 = new Screen2();
-        screen2.setVisible(true);
+        Screen3 screen3 = new Screen3();
+        screen3.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblGetStartedMouseClicked
     

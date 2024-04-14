@@ -9,21 +9,16 @@ import javax.swing.JLabel;
 public class Screen3 extends javax.swing.JFrame {
     
     private final static String CUSTOMER_NAME = "Akash Gilbert";
-    private double availableAmount = 200000.00;
     
-    DecimalFormat df = new DecimalFormat("AED #,###,###,##0.00");
+    //DecimalFormat df = new DecimalFormat("AED #,###,###,##0.00");
     
     public Screen3() {
         initComponents();
+        scaleLabelIcon(lblHome, "/ATM/home.png");
         lblCustomerName.setText(CUSTOMER_NAME);
         //lblAvailableAmount.setText("AED " + String.format("%,.2f", availableAmount));
-        lblAvailableAmount.setText(df.format(availableAmount));
+        //lblAvailableAmount.setText(df.format(availableAmount));
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-    }
-
-    public void updateAmount(double amount) {
-        availableAmount = amount;
-        lblAvailableAmount.setText("AED " + String.format("%,.2f", availableAmount));
     }
     
     /**
@@ -39,7 +34,7 @@ public class Screen3 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        lblCancel = new javax.swing.JLabel();
+        lblHome = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         lblWelcome = new javax.swing.JLabel();
         lblWelcome1 = new javax.swing.JLabel();
@@ -58,7 +53,7 @@ public class Screen3 extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 32)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(244, 150, 40));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("CAPITAL BANKERS");
 
         jLabel2.setFont(new java.awt.Font("Calibri", 0, 22)); // NOI18N
@@ -69,18 +64,18 @@ public class Screen3 extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(197, 195, 197));
         jLabel3.setText("1800 0001 0001");
 
-        lblCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ATM/cancel.png"))); // NOI18N
-        lblCancel.setText("jLabel4");
-        lblCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblCancel.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ATM/home.png"))); // NOI18N
+        lblHome.setText("jLabel4");
+        lblHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblCancelMouseClicked(evt);
+                lblHomeMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblCancelMouseEntered(evt);
+                lblHomeMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblCancelMouseExited(evt);
+                lblHomeMouseExited(evt);
             }
         });
 
@@ -91,13 +86,13 @@ public class Screen3 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblHome, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
         jPanel1Layout.setVerticalGroup(
@@ -105,7 +100,7 @@ public class Screen3 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblHome, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
@@ -118,7 +113,7 @@ public class Screen3 extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(22, 22, 22));
 
         lblWelcome.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        lblWelcome.setForeground(new java.awt.Color(255, 255, 255));
+        lblWelcome.setForeground(new java.awt.Color(22, 22, 22));
         lblWelcome.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblWelcome.setText("Available Balance -");
         lblWelcome.setToolTipText("");
@@ -136,7 +131,7 @@ public class Screen3 extends javax.swing.JFrame {
         lblCustomerName.setToolTipText("");
 
         lblAvailableAmount.setFont(new java.awt.Font("Calibri Light", 1, 24)); // NOI18N
-        lblAvailableAmount.setForeground(new java.awt.Color(255, 255, 255));
+        lblAvailableAmount.setForeground(new java.awt.Color(22, 22, 22));
         lblAvailableAmount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblAvailableAmount.setText("AED 2,00,000.00");
         lblAvailableAmount.setToolTipText("");
@@ -144,6 +139,7 @@ public class Screen3 extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(22, 22, 22));
 
         lblCashWithdrawal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ATM/cash-withdrawal.png"))); // NOI18N
+        lblCashWithdrawal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblCashWithdrawal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblCashWithdrawalMouseClicked(evt);
@@ -164,6 +160,17 @@ public class Screen3 extends javax.swing.JFrame {
 
         lblOtherServices.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ATM/other-services.png"))); // NOI18N
         lblOtherServices.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblOtherServices.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblOtherServicesMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblOtherServicesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblOtherServicesMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -250,19 +257,19 @@ public class Screen3 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lblCancelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCancelMouseEntered
-        scaleLabelIcon(lblCancel, "/ATM/cancel-hover.png");
-    }//GEN-LAST:event_lblCancelMouseEntered
+    private void lblHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseEntered
+        scaleLabelIcon(lblHome, "/ATM/home-hover.png");
+    }//GEN-LAST:event_lblHomeMouseEntered
 
-    private void lblCancelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCancelMouseExited
-        scaleLabelIcon(lblCancel, "/ATM/cancel.png");
-    }//GEN-LAST:event_lblCancelMouseExited
+    private void lblHomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseExited
+        scaleLabelIcon(lblHome, "/ATM/home.png");
+    }//GEN-LAST:event_lblHomeMouseExited
 
-    private void lblCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCancelMouseClicked
+    private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
         Screen1 screen1 = new Screen1();
         screen1.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_lblCancelMouseClicked
+    }//GEN-LAST:event_lblHomeMouseClicked
 
     private void lblCashWithdrawalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCashWithdrawalMouseEntered
         scaleLabelIcon(lblCashWithdrawal, "/ATM/cash-withdrawal-hover.png");
@@ -273,10 +280,22 @@ public class Screen3 extends javax.swing.JFrame {
     }//GEN-LAST:event_lblCashWithdrawalMouseExited
 
     private void lblCashWithdrawalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCashWithdrawalMouseClicked
-        Screen5 screen5 = new Screen5(availableAmount);
+        Screen5 screen5 = new Screen5();
         screen5.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblCashWithdrawalMouseClicked
+
+    private void lblOtherServicesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOtherServicesMouseClicked
+        FileHandling.writJSON(200000);
+    }//GEN-LAST:event_lblOtherServicesMouseClicked
+
+    private void lblOtherServicesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOtherServicesMouseEntered
+        scaleLabelIcon(lblOtherServices, "/ATM/other-services-hover.png");
+    }//GEN-LAST:event_lblOtherServicesMouseEntered
+
+    private void lblOtherServicesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOtherServicesMouseExited
+        scaleLabelIcon(lblOtherServices, "/ATM/other-services.png");
+    }//GEN-LAST:event_lblOtherServicesMouseExited
     
     private void scaleLabelIcon(JLabel lbl, String imagePath) {
         try {
@@ -296,10 +315,10 @@ public class Screen3 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblAccountDetails;
     private javax.swing.JLabel lblAvailableAmount;
-    private javax.swing.JLabel lblCancel;
     private javax.swing.JLabel lblCashWithdrawal;
     private javax.swing.JLabel lblCustomerName;
     private javax.swing.JLabel lblFundTransfer;
+    private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblOtherServices;
     private javax.swing.JLabel lblWelcome;
     private javax.swing.JLabel lblWelcome1;
